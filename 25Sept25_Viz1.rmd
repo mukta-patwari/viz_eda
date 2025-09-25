@@ -127,4 +127,77 @@ weather_df %>%
 ## setting vs mapping aesthetics
 ```
 
+## Univariate plots
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin)) +
+  geom_histogram(color = 'white', fill = 'red')
+```
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, color = name)) +
+  geom_histogram()
+```
+
+How would I fix this? facet?
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, fill = name)) +
+    geom_histogram() +
+    facet_grid(name ~ .)
+```
+
+Density plot
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, fill = name)) +
+    geom_density(alpha = 0.3)
+```
+
+Box plot
+```{r}
+weather_df %>% 
+  ggplot(aes(x = name, y = tmin)) +
+    geom_boxplot(aes(fill = name))
+```
+
+violin plot
+```{r}
+weather_df %>% 
+  ggplot(aes(x = name, y = tmin, fill = name)) +
+    geom_violin()
+```
+
+ridge plot
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = name)) +
+  geom_density_ridges()
+```
+
+Learning assessment
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_histogram() +
+  facet_grid (name ~ .)
+
+weather_df %>% 
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_density(alpha = 0.2)
+
+weather_df %>% 
+  filter(prcp > 5, prcp < 1000) %>% 
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_density(alpha = 0.2)
+
+weather_df %>% 
+  ggplot(aes(x = prcp, y = name)) +
+  geom_density_ridges(scale = .85)
+```
 

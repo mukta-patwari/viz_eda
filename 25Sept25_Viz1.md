@@ -235,3 +235,150 @@ weather_df %>%
 ``` r
 ## setting vs mapping aesthetics
 ```
+
+## Univariate plots
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin)) +
+  geom_histogram(color = 'white', fill = 'red')
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, color = name)) +
+  geom_histogram()
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+How would I fix this? facet?
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, fill = name)) +
+    geom_histogram() +
+    facet_grid(name ~ .)
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+
+Density plot
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, fill = name)) +
+    geom_density(alpha = 0.3)
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+Box plot
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = name, y = tmin)) +
+    geom_boxplot(aes(fill = name))
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+
+violin plot
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = name, y = tmin, fill = name)) +
+    geom_violin()
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+ridge plot
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = name)) +
+  geom_density_ridges()
+```
+
+    ## Picking joint bandwidth of 1.41
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_density_ridges()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+
+Learning assessment
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_histogram() +
+  facet_grid (name ~ .)
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+
+    ## Warning: Removed 15 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_density(alpha = 0.2)
+```
+
+    ## Warning: Removed 15 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-20-2.png)<!-- -->
+
+``` r
+weather_df %>% 
+  filter(prcp > 5, prcp < 1000) %>% 
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_density(alpha = 0.2)
+```
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-20-3.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = prcp, y = name)) +
+  geom_density_ridges(scale = .85)
+```
+
+    ## Picking joint bandwidth of 9.22
+
+    ## Warning: Removed 15 rows containing non-finite outside the scale range
+    ## (`stat_density_ridges()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-20-4.png)<!-- -->
