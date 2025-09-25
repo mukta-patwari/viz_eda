@@ -201,3 +201,24 @@ weather_df %>%
   geom_density_ridges(scale = .85)
 ```
 
+## Saving and embedding plots
+
+Saving plots
+
+```{r}
+ggp_weather_violin = 
+  weather_df %>% 
+  ggplot(aes(x = name, y = tmin, fill = name)) +
+    geom_violin()
+
+ggp_weather_violin
+
+ggsave("plots/ggp_violin.pdf", ggp_weather_violin, width = 8, height = 6)
+```
+
+Embedding plots
+
+```{r, fig.width = 6, fig.height = 4}
+ggp_weather_violin
+```
+
