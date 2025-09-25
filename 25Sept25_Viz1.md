@@ -177,3 +177,61 @@ weather_df %>%
     ## `geom_smooth()` using formula = 'y ~ x'
 
 ![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+## Small things
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name, shape = name)) +
+  geom_smooth(se = FALSE)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name, shape = name)) +
+  geom_smooth(se = FALSE) +
+  geom_point() ## do the overlay AFTER the points, otherwise it will be covered up by all the points
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+    ## Warning: Removed 17 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-10-2.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_hex()
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_binhex()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+    geom_point(color = 'purple')
+```
+
+    ## Warning: Removed 17 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](25Sept25_Viz1_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+``` r
+## setting vs mapping aesthetics
+```

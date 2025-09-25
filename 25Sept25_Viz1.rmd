@@ -100,4 +100,31 @@ weather_df %>%
     geom_smooth(se = FALSE, method = "lm")
 ```
 
+## Small things
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name, shape = name)) +
+  geom_smooth(se = FALSE)
+
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name, shape = name)) +
+  geom_smooth(se = FALSE) +
+  geom_point() ## do the overlay AFTER the points, otherwise it will be covered up by all the points
+```
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_hex()
+```
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+    geom_point(color = 'purple')
+
+## setting vs mapping aesthetics
+```
+
 
