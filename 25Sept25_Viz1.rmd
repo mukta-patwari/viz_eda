@@ -42,3 +42,62 @@ weather_df %>%
   filter(is.na(tmax))
 ```
 
+## Advanced scatterplots
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = 0.3) + # Change opacity of points - not mapping the alpha, just setting for all points. Helps identify that there are more points 
+  geom_smooth(se = FALSE) # removes standard error bar
+```
+
+Where you define aesthetics matters
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_point(aes(color = name, size = prcp), alpha = 0.3) +
+  geom_smooth(se = FALSE)
+```
+
+Faceting
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_point(aes(color = name), alpha = 0.3, size = 0.8) +
+  geom_smooth(se = FALSE) +
+  facet_grid(. ~ name)
+
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_point(aes(color = name), alpha = 0.3, size = 0.8) +
+  geom_smooth(se = FALSE) +
+  facet_grid(name ~ .)
+```
+
+Make a more interesting scatterplot
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(aes(size = prcp), alpha = 0.3) +
+  geom_smooth(se = FALSE) +
+  facet_grid(. ~ name)
+```
+
+Learning assessment
+
+```{r}
+weather_df %>% 
+  filter(name == "CentralPark_NY") %>% 
+  mutate(
+    tmax_F = tmax * (9/5) + 32,
+    tmin_F = tmin * (9/5) + 32
+  ) %>% 
+  ggplot(aes(x = tmin_F, y = tmax_F)) + 
+    geom_point() +
+    geom_smooth(se = FALSE, method = "lm")
+```
+
+
