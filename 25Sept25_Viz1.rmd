@@ -1,0 +1,44 @@
+---
+title: "Visualization and EDA 1"
+output: github_document
+date: "2025-09-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggridges)
+library(p8105.datasets)
+data("weather_df")
+```
+
+Basic scatterplot
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax))
+```
+
+Adding geom point
+
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax)) + 
+  geom_point()
+```
+
+Saving output
+
+```{r}
+ggp_weather = 
+  weather_df |>
+  ggplot(aes(x = tmin, y = tmax)) 
+
+ggp_weather + geom_point()
+
+```
+
+Check that rows are missing
+
+```{r}
+weather_df %>% 
+  filter(is.na(tmax))
+```
+
