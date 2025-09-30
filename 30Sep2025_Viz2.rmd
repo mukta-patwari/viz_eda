@@ -1,0 +1,35 @@
+---
+title: "Visualization 2"
+output: github_document
+date: "2025-09-30"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(patchwork)
+
+library(p8105.datasets)
+data("weather_df")
+```
+
+Let's make a basic scatterplot
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_point(aes(color = name), alpha = 0.5) +
+  labs(
+    x = "Minimum daily temp",
+    y = "Maximum daily temp",
+    title = "Temperature scatterplot",
+    caption = "Data from NOAA",
+    color = "Location"
+  )
+```
+
+## Scales
+
+
+
