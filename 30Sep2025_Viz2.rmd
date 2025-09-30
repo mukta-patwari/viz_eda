@@ -82,5 +82,23 @@ ggp_temperature +
   theme(legend.position = "bottom")
 ```
 
+## Adding data in geoms
+```{r}
+central_park_df =
+  weather_df %>% 
+  filter(name == "CentralPark_NY")
+
+molokai_df =
+  weather_df %>% 
+  filter(name == "Molokai_HI")
+
+ggplot(data = molokai_df, aes(x = date, y = tmax, color = name)) +
+  geom_point() +
+  geom_line(data = central_park_df)
+
+# Use one dataset for one part of the plot, and use another dataset for another part of the plot
+
+```
+
 
 
