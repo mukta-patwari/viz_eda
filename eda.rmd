@@ -35,3 +35,68 @@ weather_df =
   mutate(month = floor_date(date, unit = "month"))
 ```
 
+Make plots
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = prcp)) +
+  geom_histogram()
+```
+
+Check on extreme values
+
+```{r}
+weather_df %>% 
+  filter(prcp > 1000)
+```
+
+Look at data again
+
+```{r}
+weather_df %>% 
+  filter(tmax >= 20, tmax <= 30) %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name, shape = name)) +
+  geom_point()
+```
+
+## Add groups
+
+```{r}
+weather_df %>% 
+  group_by(name, month)
+```
+
+Group and count things
+
+```{r}
+weather_df %>% 
+  group_by(name) %>% 
+  summarize(
+    n = n()
+  ) # What do you want to count
+```
+
+```{r}
+weather_df %>% 
+  group_by(name, month) %>% 
+  summarize(
+    n = n()
+  )
+```
+
+n_distinct()
+
+```{r}
+weather_df %>% 
+  group_by(month) %>% 
+  summarize(
+    n = n_distinct(date)
+  )
+```
+
+You can count directly
+
+```{r}
+weather_df %>% 
+  count(name)
+```
